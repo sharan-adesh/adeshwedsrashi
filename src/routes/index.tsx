@@ -49,7 +49,7 @@ function Invitation() {
   useScrollReveal();
 
   useEffect(() => {
-    let animationFrame = 0;
+    let scrollTimeout = 0;
 
     const updateActiveSection = () => {
       const activationLine = window.innerHeight * 0.35;
@@ -73,8 +73,8 @@ function Invitation() {
     };
 
     const scheduleUpdate = () => {
-      cancelAnimationFrame(animationFrame);
-      animationFrame = requestAnimationFrame(updateActiveSection);
+      window.clearTimeout(scrollTimeout);
+      scrollTimeout = window.setTimeout(updateActiveSection, 150);
     };
 
     scheduleUpdate();
@@ -82,7 +82,7 @@ function Invitation() {
     window.addEventListener("resize", scheduleUpdate);
 
     return () => {
-      cancelAnimationFrame(animationFrame);
+      window.clearTimeout(scrollTimeout);
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
     };

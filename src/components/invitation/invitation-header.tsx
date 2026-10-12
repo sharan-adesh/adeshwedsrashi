@@ -65,15 +65,7 @@ export function InvitationHeader() {
             <a
               key={id}
               href={`#${id}`}
-              onClick={(event) => {
-                event.preventDefault();
-                const section = document.getElementById(id);
-                if (!section) {
-                  throw new Error(`Navigation section "${id}" was not found.`);
-                }
-                section.scrollIntoView({ behavior: "auto", block: "start" });
-                setMenuOpen(false);
-              }}
+              onClick={() => setMenuOpen(false)}
             >
               {label}
             </a>
