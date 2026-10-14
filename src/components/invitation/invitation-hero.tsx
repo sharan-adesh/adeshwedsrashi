@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import temple from "../../assets/shiva-temple (2).jpg";
+import temple from "../../assets/temple-poster.jpeg";
 import {
   city,
   couple,
