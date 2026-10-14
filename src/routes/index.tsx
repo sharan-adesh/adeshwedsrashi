@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Celebrations } from "@/components/invitation/celebrations";
 import { CoupleCarousel } from "@/components/couple-carousel";
-import { DivineBlessing } from "@/components/invitation/divine-blessing";
 import { InvitationEnvelope } from "@/components/invitation/invitation-envelope";
 import { FamilyInvitation } from "@/components/invitation/family-invitation";
 import { InvitationHeader } from "@/components/invitation/invitation-header";
@@ -115,7 +114,6 @@ function Invitation() {
         <InvitationHeader />
         <InvitationHero active={opened} />
         <FamilyInvitation />
-        {/* <DivineBlessing /> */}
         <CoupleCarousel />
         <Celebrations />
         <VenueSection />
