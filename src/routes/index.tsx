@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Celebrations } from "@/components/invitation/celebrations";
 import { CoupleCarousel } from "@/components/couple-carousel";
 import { DivineBlessing } from "@/components/invitation/divine-blessing";
+import { InvitationEnvelope } from "@/components/invitation/invitation-envelope";
 import { FamilyInvitation } from "@/components/invitation/family-invitation";
 import { InvitationHeader } from "@/components/invitation/invitation-header";
 import { InvitationHero } from "@/components/invitation/invitation-hero";
@@ -46,7 +47,15 @@ export const Route = createFileRoute("/")({
 
 function Invitation() {
   const [rsvpOpen, setRsvpOpen] = useState(false);
+  const [opened, setOpened] = useState(false);
+  const [coverVisible, setCoverVisible] = useState(true);
+  const pageRef = useRef<HTMLElement>(null);
   useScrollReveal();
+
+  const openInvitation = () => {
+    setOpened(true);
+    window.requestAnimationFrame(() => pageRef.current?.focus());
+  };
 
   useEffect(() => {
     let scrollTimeout = 0;
@@ -89,16 +98,30 @@ function Invitation() {
   }, []);
 
   return (
-    <main>
-      <InvitationHeader />
-      <InvitationHero />
-      <FamilyInvitation />
-      {/* <DivineBlessing /> */}
-      <CoupleCarousel />
-      <Celebrations />
-      <VenueSection />
-      <WeddingFooter />
-      <WeddingRSVP open={rsvpOpen} onOpenChange={setRsvpOpen} />
-    </main>
+    <>
+      {coverVisible && (
+        <InvitationEnvelope
+          onOpen={openInvitation}
+          onComplete={() => setCoverVisible(false)}
+        />
+      )}
+      <main
+        ref={pageRef}
+        tabIndex={opened ? -1 : undefined}
+        aria-hidden={!opened}
+        inert={!opened}
+        className={`invitation-page${opened ? " invitation-page--ready" : ""}`}
+      >
+        <InvitationHeader />
+        <InvitationHero active={opened} />
+        <FamilyInvitation />
+        {/* <DivineBlessing /> */}
+        <CoupleCarousel />
+        <Celebrations />
+        <VenueSection />
+        <WeddingFooter />
+        <WeddingRSVP open={rsvpOpen} onOpenChange={setRsvpOpen} />
+      </main>
+    </>
   );
 }

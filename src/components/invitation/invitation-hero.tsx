@@ -8,13 +8,33 @@ import {
   region,
   weddingDateDisplayLabel,
 } from "../../lib/wedding";
+import { InvitationPetal } from "./invitation-petal";
 import { Ornament } from "./ornament";
 
 const countdownLabels = ["Days", "Hours", "Minutes", "Seconds"] as const;
 
-export function InvitationHero() {
+type InvitationHeroProps = {
+  active: boolean;
+};
+
+export function InvitationHero({ active }: InvitationHeroProps) {
   const [time, setTime] = useState<number[] | null>(null);
   const heroRef = useRef<HTMLImageElement>(null);
+  const petals = Array.from({ length: 28 }, (_, index) => {
+    const left = (index * 37 + 7) % 100;
+    const drift = (index % 2 === 0 ? -1 : 1) * (12 + ((index * 9) % 18));
+    const rotation = ((index * 29) % 180) - 90;
+    const scale = 0.58 + ((index * 7) % 11) / 20;
+
+    return {
+      left,
+      drift,
+      rotation,
+      scale,
+      animationDelay: `${((index * 13) % 28) / 4}s`,
+      animationDuration: 11 + ((index * 5) % 7),
+    };
+  });
 
   useEffect(() => {
     const updateCountdown = () => setTime(countdown(Date.now()));
@@ -47,14 +67,18 @@ export function InvitationHero() {
         fetchPriority="high"
       />
       <div className="hero-wash" />
-      <div className="petals" aria-hidden="true">
-        {Array.from({ length: 28 }, (_, index) => (
-          <i
+      <div className={`petals${active ? " petals--active" : ""}`} aria-hidden="true">
+        {petals.map((petal, index) => (
+          <InvitationPetal
             key={index}
+            variant={index % 3}
             style={{
-              left: `${(index * 37 + 7) % 100}%`,
-              animationDelay: `${-((index * 17) % 24)}s`,
-              animationDuration: `${14 + ((index * 7) % 12)}s`,
+              left: `${petal.left}%`,
+              animationDelay: petal.animationDelay,
+              animationDuration: `${petal.animationDuration}s`,
+              ["--petal-drift-x" as string]: `${petal.drift}px`,
+              ["--petal-rotation" as string]: `${petal.rotation}deg`,
+              ["--petal-scale" as string]: `${petal.scale}`,
             }}
           />
         ))}
