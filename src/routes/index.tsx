@@ -70,9 +70,11 @@ function Invitation() {
         }
       }
 
-      const hash = `#${activeSectionId}`;
+      const hash = activeSectionId === "home" ? "" : `#${activeSectionId}`;
       if (window.location.hash !== hash) {
-        window.history.replaceState(
+        // Keep this URL-only update from triggering TanStack Router navigation and hash scrolling.
+        History.prototype.replaceState.call(
+          window.history,
           window.history.state,
           "",
           `${window.location.pathname}${window.location.search}${hash}`,

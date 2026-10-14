@@ -7,7 +7,7 @@ import couplePhoto5 from "../assets/couple-5.jpeg";
 
 export const navigationItems = [
   ["The Invitation", "invitation"],
-  ["The Couple", "couple"],
+  ["The Couple", "potraits"],
   ["Celebrations", "celebrations"],
   ["Venue", "venue"],
 ] as const;

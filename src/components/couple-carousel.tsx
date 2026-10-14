@@ -52,7 +52,7 @@ export function CoupleCarousel() {
 
   return (
     <div
-      id="couple"
+      id="potraits"
       className="couple-carousel section reveal"
       role="region"
       aria-roledescription="carousel"

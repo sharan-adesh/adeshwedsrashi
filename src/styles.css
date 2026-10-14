@@ -149,9 +149,12 @@
   --foreground: oklch(0.32 0.04 25);
   --primary: oklch(0.371 0.139 20);
   --primary-foreground: oklch(0.988 0.006 85);
-  --cover-rose: oklch(0.78 0.078 10);
-  --cover-rose-shadow: oklch(0.73 0.085 10);
-  --cover-rose-highlight: oklch(0.85 0.052 10);
+  --cover-rose: #C89D67;
+  --cover-rose-shadow: #C89D5E;
+  --cover-rose-highlight: #E0BC7A;
+  --petal-rose: oklch(0.78 0.078 10);
+  --petal-rose-shadow: oklch(0.73 0.085 10);
+  --petal-rose-highlight: oklch(0.85 0.052 10);
   --secondary: oklch(0.94 0.034 80);
   --secondary-foreground: oklch(0.371 0.139 20);
   --muted: oklch(0.959 0.015 64);
@@ -1525,8 +1528,8 @@ button:hover {
   background: linear-gradient(
     145deg,
     color-mix(in oklch, var(--blush) 32%, white),
-    color-mix(in oklch, var(--cover-rose) 84%, var(--blush)) 44%,
-    color-mix(in oklch, var(--cover-rose-shadow) 75%, var(--primary)) 88%
+    color-mix(in oklch, var(--petal-rose) 84%, var(--blush)) 44%,
+    color-mix(in oklch, var(--petal-rose-shadow) 75%, var(--primary)) 88%
   );
   box-shadow:
     inset -3px -4px 6px color-mix(in oklch, var(--primary) 30%, transparent),
@@ -1544,8 +1547,8 @@ button:hover {
   background: linear-gradient(
     145deg,
     color-mix(in oklch, var(--blush) 28%, white),
-    color-mix(in oklch, var(--cover-rose) 78%, var(--blush)) 45%,
-    color-mix(in oklch, var(--cover-rose-shadow) 72%, var(--primary))
+    color-mix(in oklch, var(--petal-rose) 78%, var(--blush)) 45%,
+    color-mix(in oklch, var(--petal-rose-shadow) 72%, var(--primary))
   );
 }
 .invitation-petal--2 {
@@ -1554,8 +1557,8 @@ button:hover {
   background: linear-gradient(
     145deg,
     color-mix(in oklch, var(--background) 70%, white),
-    color-mix(in oklch, var(--cover-rose) 80%, var(--background)) 46%,
-    color-mix(in oklch, var(--cover-rose-shadow) 72%, var(--gold))
+    color-mix(in oklch, var(--petal-rose) 80%, var(--background)) 46%,
+    color-mix(in oklch, var(--petal-rose-shadow) 72%, var(--gold))
   );
 }
 .invitation-petal--3 {
@@ -1564,8 +1567,8 @@ button:hover {
   background: linear-gradient(
     145deg,
     color-mix(in oklch, var(--blush) 24%, white),
-    color-mix(in oklch, var(--primary) 62%, var(--cover-rose)) 50%,
-    color-mix(in oklch, var(--cover-rose-shadow) 78%, var(--gold))
+    color-mix(in oklch, var(--primary) 62%, var(--petal-rose)) 50%,
+    color-mix(in oklch, var(--petal-rose-shadow) 78%, var(--gold))
   );
 }
 @keyframes petal-fall {
