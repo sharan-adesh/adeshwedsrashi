@@ -3,10 +3,13 @@
 @import "tw-animate-css";
 
 @import "./styles/theme.css";
+@import "./styles/base.css";
 @import "./styles/layout.css";
+@import "./styles/hero.css";
 @import "./styles/sections.css";
+@import "./styles/family-invitation.css";
 @import "./styles/couple-carousel.css";
-@import "./styles/events.css";
+@import "./styles/celebrations.css";
 @import "./styles/venue-footer.css";
 @import "./styles/invitation-cover.css";
 @import "./styles/components.css";
