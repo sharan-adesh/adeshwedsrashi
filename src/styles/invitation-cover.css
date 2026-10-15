@@ -1,0 +1,342 @@
+.invitation-cover {
+  --envelope-open-duration: 1800ms;
+  --cover-seal-size: clamp(100px, 7.8vw, 150px);
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: transparent;
+}
+.invitation-cover::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      color-mix(in oklch, var(--cover-rose-highlight) 55%, transparent),
+      transparent 55%
+    ),
+    var(--cover-rose);
+  content: "";
+  transition: opacity var(--envelope-open-duration) ease;
+}
+.invitation-cover__panel {
+  position: absolute;
+  inset-block: 0;
+  z-index: 2;
+  width: 50.1%;
+  pointer-events: none;
+  background: var(--cover-rose);
+  transition:
+    transform var(--envelope-open-duration) cubic-bezier(0.22, 0.75, 0.2, 1);
+}
+.invitation-cover__panel--left {
+  left: 0;
+  transform-origin: left center;
+}
+.invitation-cover__panel--right {
+  right: 0;
+  transform-origin: right center;
+}
+.invitation-cover__frame {
+  --frame-corner-height: clamp(42px, 8vh, 82px);
+  position: absolute;
+  z-index: 3;
+  top: 5.1%;
+  bottom: 5.1%;
+  left: 50%;
+  width: min(78vw, 300px);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.invitation-cover__frame::after {
+  position: absolute;
+  inset-block: calc(var(--frame-corner-height) + 20px);
+  inset-inline: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      color-mix(in oklch, var(--primary) 14%, transparent) 18%,
+      color-mix(in oklch, var(--primary) 14%, transparent) 82%,
+      transparent
+    )
+    left / 1px 100% no-repeat,
+    linear-gradient(
+      to bottom,
+      transparent,
+      color-mix(in oklch, var(--primary) 14%, transparent) 18%,
+      color-mix(in oklch, var(--primary) 14%, transparent) 82%,
+      transparent
+    )
+    right / 1px 100% no-repeat;
+  content: "";
+}
+.invitation-cover__frame::before {
+  position: absolute;
+  inset: var(--frame-corner-height) 16%;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      color-mix(in oklch, var(--primary) 11%, transparent) 18%,
+      color-mix(in oklch, var(--primary) 11%, transparent) 82%,
+      transparent
+    )
+    left / 1px 100% no-repeat,
+    linear-gradient(
+      to bottom,
+      transparent,
+      color-mix(in oklch, var(--primary) 11%, transparent) 18%,
+      color-mix(in oklch, var(--primary) 11%, transparent) 82%,
+      transparent
+    )
+    right / 1px 100% no-repeat;
+  content: "";
+}
+.invitation-cover__corner {
+  position: absolute;
+  width: 30%;
+  height: var(--frame-corner-height);
+  border-color: color-mix(in oklch, var(--primary) 22%, transparent);
+  border-style: solid;
+}
+.invitation-cover__corner--top-left {
+  top: 0;
+  left: 3%;
+  border-width: 1px 1px 0 0;
+  border-radius: 0 68px 0 0;
+}
+.invitation-cover__corner--top-right {
+  top: 0;
+  right: 3%;
+  border-width: 1px 0 0 1px;
+  border-radius: 68px 0 0;
+}
+.invitation-cover__corner--bottom-left {
+  bottom: 0;
+  left: 3%;
+  border-width: 0 1px 1px 0;
+  border-radius: 0 0 68px;
+}
+.invitation-cover__corner--bottom-right {
+  right: 3%;
+  bottom: 0;
+  border-width: 0 0 1px 1px;
+  border-radius: 0 0 0 68px;
+}
+.invitation-cover__seam {
+  position: absolute;
+  z-index: 3;
+  inset: 0 auto 0 50%;
+  width: 3px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--cover-rose-shadow),
+    var(--cover-rose-highlight),
+    var(--cover-rose-shadow)
+  );
+  box-shadow: 0 0 14px color-mix(in oklch, var(--primary) 16%, transparent);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0 calc(50% - var(--cover-seal-size) / 2 - 16px),
+    transparent calc(50% - var(--cover-seal-size) / 2),
+    transparent calc(50% + var(--cover-seal-size) / 2),
+    #000 calc(50% + var(--cover-seal-size) / 2 + 16px)
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0 calc(50% - var(--cover-seal-size) / 2 - 16px),
+    transparent calc(50% - var(--cover-seal-size) / 2),
+    transparent calc(50% + var(--cover-seal-size) / 2),
+    #000 calc(50% + var(--cover-seal-size) / 2 + 16px)
+  );
+}
+.invitation-cover__petals {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.invitation-cover__petals .invitation-cover__petal {
+  animation:
+    envelope-petal-scatter calc(var(--envelope-open-duration) - 150ms)
+      linear var(--scatter-delay, 0ms) both,
+    envelope-petal-fade calc(var(--envelope-open-duration) - 150ms)
+      cubic-bezier(0.4, 0, 0.6, 1) var(--scatter-delay, 0ms) both;
+}
+@keyframes envelope-petal-scatter {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(0.35);
+  }
+  58% {
+    transform: translate3d(
+        calc(-50% + var(--scatter-mid-x)),
+        calc(-50% + var(--scatter-mid-y)),
+        0
+      )
+      rotate(var(--scatter-mid-rotation)) scale(0.82);
+  }
+  100% {
+    transform: translate3d(
+        calc(-50% + var(--scatter-x) + 14px),
+        calc(-50% + var(--scatter-y) - 18px),
+        0
+      )
+      rotate(calc(var(--scatter-rotation) + 35deg)) scale(var(--petal-scale));
+  }
+}
+@keyframes envelope-petal-fade {
+  0% {
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.95;
+  }
+  55% {
+    opacity: 0.9;
+  }
+  75% {
+    opacity: 0.72;
+  }
+  90% {
+    opacity: 0.32;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.invitation-cover__button {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  white-space: normal;
+}
+.invitation-cover__button:hover {
+  background: transparent;
+  box-shadow: none;
+}
+.invitation-cover__button:focus-visible {
+  outline: 2px solid var(--gold-muted);
+  outline-offset: -8px;
+}
+.invitation-cover__seal {
+  position: relative;
+  display: flex;
+  width: var(--cover-seal-size);
+  aspect-ratio: 1;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in oklch, var(--gold) 68%, var(--primary));
+  border-radius: 50%;
+  background: color-mix(in oklch, var(--cover-rose-highlight) 72%, var(--cover-rose));
+  box-shadow:
+    0 0 32px color-mix(in oklch, var(--background) 68%, transparent),
+    inset 0 0 20px color-mix(in oklch, var(--gold) 12%, transparent);
+  font-family: var(--font-display);
+  font-size: var(--type-size-seal);
+  transition: transform 350ms ease, box-shadow 350ms ease, opacity 350ms ease;
+}
+.invitation-cover__seal span:first-child {
+  transform: translate(-12px, -8px);
+}
+.invitation-cover__seal span:last-child {
+  transform: translate(12px, 10px);
+}
+.invitation-cover__seal svg {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  width: 13px;
+  color: var(--primary);
+  transform: translate(-50%, -50%);
+}
+.invitation-cover__button:hover .invitation-cover__seal {
+  transform: scale(1.05);
+  box-shadow: 0 0 38px color-mix(in oklch, var(--background) 78%, transparent);
+}
+.invitation-cover__prompt {
+  margin-top: 15px;
+  color: color-mix(in oklch, var(--primary) 78%, var(--gold-muted));
+  font-size: var(--type-size-body);
+  font-weight: var(--type-weight-semibold);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  animation: cover-prompt 2.4s ease-in-out infinite;
+}
+.invitation-cover--opening {
+  pointer-events: none;
+}
+.invitation-cover--opening::before {
+  opacity: 0;
+}
+.invitation-cover--opening .invitation-cover__seal {
+  transform: scale(0.15);
+  opacity: 0;
+}
+.invitation-cover--opening .invitation-cover__button,
+.invitation-cover--opening .invitation-cover__frame,
+.invitation-cover--opening .invitation-cover__seam {
+  opacity: 0;
+}
+.invitation-cover--opening .invitation-cover__panel--left {
+  transform: translateX(-102%);
+}
+.invitation-cover--opening .invitation-cover__panel--right {
+  transform: translateX(102%);
+}
+.invitation-page {
+  opacity: 0;
+  transition: opacity var(--envelope-open-duration, 1800ms) ease;
+}
+.invitation-page--ready {
+  opacity: 1;
+}
+@keyframes cover-prompt {
+  50% {
+    opacity: 0.58;
+  }
+}
+@media (max-width: 767px) {
+  .invitation-cover__frame {
+    top: 5.2%;
+    bottom: 5.2%;
+    width: min(78vw, 280px);
+  }
+  .invitation-cover__seal {
+    width: 100px;
+  }
+  .invitation-cover__prompt {
+    margin-top: 13px;
+    font-size: var(--type-size-caption);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .invitation-cover,
+  .invitation-cover::before,
+  .invitation-page,
+  .invitation-cover__seal,
+  .invitation-cover__panel {
+    transition: none;
+  }
+  .invitation-cover__prompt {
+    animation: none;
+  }
+}

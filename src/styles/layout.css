@@ -1,0 +1,253 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+body {
+  font-family: var(--font-sans);
+  font-size: var(--type-size-body);
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+.site-header {
+  height: 78px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 5%;
+  background: var(--background);
+  position: relative;
+  z-index: 10;
+  /* border-bottom: 1px solid var(--border); */
+}
+.monogram {
+  font-family: var(--font-display);
+  font-size: var(--type-size-heading-large);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+}
+.monogram span {
+  font-size: var(--type-size-subtitle);
+  font-style: italic;
+  color: var(--gold-muted);
+}
+.desktop-nav {
+  display: flex;
+  gap: 12px;
+  font-size: var(--type-size-body);
+}
+.desktop-nav a,
+.mobile-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 2px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.desktop-nav a:hover,
+.mobile-nav a:hover {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+.header-actions {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+.rsvp-button {
+  font-size: var(--type-size-label);
+  letter-spacing: 1px;
+  border-radius: 2px;
+  height: 35px;
+  padding: 0 23px;
+}
+.menu-toggle {
+  display: none;
+}
+.hero {
+  min-height: 720px;
+  height: calc(100svh - 115px);
+  max-height: 950px;
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  clip-path: inset(0);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 52%;
+  will-change: transform;
+}
+.hero-wash {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 95% 75% at 50% 42%,
+      oklch(0.988 0.006 85 / 0.62),
+      oklch(0.988 0.006 85 / 0.3) 62%,
+      oklch(0.988 0.006 85 / 0) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      oklch(0.988 0.006 85 / 0.18),
+      oklch(0.988 0.006 85 / 0.45) 70%,
+      oklch(0.988 0.006 85 / 0.62)
+    );
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 58px 20px 25px;
+}
+.invocation {
+  font-family: var(--font-display);
+  font-size: var(--type-size-subtitle);
+  color: var(--primary);
+}
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-muted);
+  gap: 14px;
+  margin: 22px auto;
+}
+.ornament span {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+.eyebrow {
+  font-size: var(--type-size-label);
+  font-weight: var(--type-weight-semibold);
+  letter-spacing: 2px;
+  color: var(--gold-muted);
+}
+.hero-eyebrow {
+  margin-top: 24px;
+  color: var(--primary);
+  font-size: var(--type-size-small);
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: var(--type-weight-medium);
+  letter-spacing: 0;
+}
+h1 {
+  font-size: var(--type-size-hero);
+  color: var(--primary);
+  line-height: 1.15;
+  margin: 11px 0 19px;
+}
+h1 span {
+  font-style: italic;
+  font-size: var(--type-size-display-large);
+  color: var(--gold-muted);
+  font-weight: var(--type-weight-regular);
+}
+.hero-intro {
+  font-size: var(--type-size-body-large);
+  line-height: 1.85;
+}
+.hero-date {
+  margin: 27px 0 22px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--type-size-body);
+  letter-spacing: 1.7px;
+  color: var(--primary);
+  font-weight: var(--type-weight-semibold);
+}
+.hero-date b {
+  color: var(--gold-muted);
+  font-size: var(--type-size-caption);
+}
+.countdown {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+.countdown div {
+  width: 90px;
+  position: relative;
+}
+.countdown div + div:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 34px;
+  top: 9px;
+  width: 1px;
+  background: var(--gold);
+  opacity: 0.55;
+}
+.countdown strong {
+  display: block;
+  font-family: var(--font-display);
+  color: var(--primary);
+  font-size: var(--type-size-display);
+  font-weight: var(--type-weight-medium);
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+.countdown span {
+  font-size: var(--type-size-small);
+  font-weight: var(--type-weight-semibold);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+  font-size: var(--type-size-small);
+  font-weight: var(--type-weight-semibold);
+  letter-spacing: 2px;
+  margin-top: 50px;
+}
+.scroll-indicator svg {
+  animation: float 3s ease-in-out infinite;
+}
+.hero-top,
+.hero-bottom {
+  position: absolute;
+  height: 200px;
+  inset-inline: 0;
+}
+.hero-top {
+  top: 0;
+  background: linear-gradient(var(--background), transparent);
+}
+.hero-bottom {
+  bottom: 0;
+  background: linear-gradient(transparent, var(--background));
+}

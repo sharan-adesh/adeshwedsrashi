@@ -1,0 +1,162 @@
+.form-label {
+  font-size: var(--type-size-label);
+  display: grid;
+  gap: 8px;
+  color: var(--foreground);
+}
+.form-label input,
+.form-label select,
+.form-label textarea {
+  width: 100%;
+  border: 1px solid var(--input);
+  border-radius: 3px;
+  padding: 11px 12px;
+  font-size: var(--type-size-body);
+  background: var(--background);
+  outline-color: var(--gold);
+}
+.rsvp-dialog {
+  padding: 32px;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+}
+.rsvp-dialog .eyebrow {
+  font-size: var(--type-size-small);
+  margin-bottom: 8px;
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+button {
+  transition:
+    background 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+button:hover {
+  box-shadow: var(--invitation-shadow);
+}
+.petals {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0);
+  pointer-events: none;
+  z-index: 1;
+}
+.petals:not(.petals--active) .invitation-petal {
+  animation: none;
+  opacity: 0;
+}
+.invitation-petal {
+  --petal-drift-x: 28px;
+  --petal-rotation: 0deg;
+  --petal-scale: 1;
+  position: absolute;
+  top: 0;
+  width: 12px;
+  height: 18px;
+  border-radius: 68% 72% 66% 38% / 72% 28% 76% 24%;
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklch, var(--blush) 32%, white),
+    color-mix(in oklch, var(--petal-rose) 84%, var(--blush)) 44%,
+    color-mix(in oklch, var(--petal-rose-shadow) 75%, var(--primary)) 88%
+  );
+  box-shadow:
+    inset -3px -4px 6px color-mix(in oklch, var(--primary) 30%, transparent),
+    inset 3px 3px 5px color-mix(in oklch, white 24%, transparent);
+  opacity: 0.9;
+  transform-origin: center;
+  filter: saturate(1.18) contrast(1.04);
+  will-change: transform, opacity;
+  animation: petal-fall var(--petal-duration, 20s) linear var(--petal-delay, 0s)
+    infinite backwards;
+}
+.invitation-petal--1 {
+  width: 10px;
+  height: 15px;
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklch, var(--blush) 28%, white),
+    color-mix(in oklch, var(--petal-rose) 78%, var(--blush)) 45%,
+    color-mix(in oklch, var(--petal-rose-shadow) 72%, var(--primary))
+  );
+}
+.invitation-petal--2 {
+  width: 9px;
+  height: 13px;
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklch, var(--background) 70%, white),
+    color-mix(in oklch, var(--petal-rose) 80%, var(--background)) 46%,
+    color-mix(in oklch, var(--petal-rose-shadow) 72%, var(--gold))
+  );
+}
+.invitation-petal--3 {
+  width: 11px;
+  height: 16px;
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklch, var(--blush) 24%, white),
+    color-mix(in oklch, var(--primary) 62%, var(--petal-rose)) 50%,
+    color-mix(in oklch, var(--petal-rose-shadow) 78%, var(--gold))
+  );
+}
+@keyframes petal-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0) rotate(-10deg) scale(calc(0.62 * var(--petal-scale)));
+  }
+  20% {
+    opacity: 0.9;
+    transform: translate3d(calc(var(--petal-drift-x) * 0.18), 18vh, 0)
+      rotate(40deg) scale(calc(0.8 * var(--petal-scale)));
+  }
+  50% {
+    transform: translate3d(calc(var(--petal-drift-x) * 0.52), 45vh, 0)
+      rotate(140deg) scale(calc(0.94 * var(--petal-scale)));
+  }
+  80% {
+    transform: translate3d(calc(var(--petal-drift-x) * 0.82), 78vh, 0)
+      rotate(220deg) scale(calc(1.02 * var(--petal-scale)));
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--petal-drift-x), 110vh, 0)
+      rotate(var(--petal-rotation)) scale(calc(0.82 * var(--petal-scale)));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .petals .invitation-petal {
+    animation: none;
+    opacity: 0.55;
+    transform: translate3d(0, 8vh, 0) rotate(18deg);
+  }
+}
+@keyframes float {
+  50% {
+    transform: translateY(6px);
+  }
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

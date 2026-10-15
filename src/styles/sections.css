@@ -1,0 +1,105 @@
+.section {
+  padding: 64px 24px;
+  text-align: center;
+  scroll-margin-top: 15px;
+}
+h2 {
+  color: var(--primary);
+  font-size: var(--type-size-display);
+  line-height: 1.2;
+  margin-top: 12px;
+}
+.section-description {
+  color: var(--muted-foreground);
+  font-size: var(--type-size-body-large);
+  font-weight: var(--type-weight-medium);
+  line-height: 1.95;
+}
+.blessing-frame {
+  max-width: 850px;
+  border: 1px solid var(--border);
+  outline: 1px solid var(--border);
+  outline-offset: -8px;
+  margin: 38px auto 27px;
+  padding: 20px;
+  position: relative;
+  background: var(--background);
+}
+.blessing-frame:before,
+.blessing-frame:after {
+  content: "✧";
+  position: absolute;
+  font-size: var(--type-size-heading-small);
+  color: var(--gold);
+  background: var(--background);
+  padding: 0 10px;
+  left: calc(50% - 20px);
+}
+.blessing-frame:before {
+  top: -16px;
+}
+.blessing-frame:after {
+  bottom: -16px;
+}
+.sanskrit {
+  font-size: var(--type-size-heading-small);
+  color: var(--primary);
+}
+.hospitality {
+  font-size: var(--type-size-body);
+  font-weight: var(--type-weight-medium);
+  color: var(--muted-foreground);
+  margin-top: 5px;
+  font-style: italic;
+}
+.family-grid {
+  display: grid;
+  grid-template-columns: 1fr 45px 1fr;
+  align-items: center;
+  margin-top: 30px;
+  gap: 15px;
+}
+.family-grid .eyebrow {
+  font-size: var(--type-size-caption);
+  font-weight: var(--type-weight-semibold);
+  letter-spacing: 1.7px;
+}
+.family-grid h3 {
+  font-size: var(--type-size-heading-small);
+  color: var(--primary);
+  margin: 10px 0;
+}
+.family-grid p:not(.eyebrow) {
+  font-size: var(--type-size-body);
+  font-weight: var(--type-weight-medium);
+  line-height: 1.8;
+  color: var(--muted-foreground);
+}
+.family-grid h4 {
+  font-size: var(--type-size-heading-large);
+  color: var(--primary);
+  margin-top: 10px;
+}
+.family-heart {
+  color: var(--gold-muted);
+  display: grid;
+  place-items: center;
+}
+.blessing-note {
+  font-size: var(--type-size-body);
+  font-weight: var(--type-weight-medium);
+  font-style: italic;
+  color: var(--muted-foreground);
+  margin-top: 23px;
+}
+.section-actions {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  margin-top: 29px;
+}
+.section-actions button,
+.section-actions a {
+  font-size: var(--type-size-body);
+  border-radius: 2px;
+}
