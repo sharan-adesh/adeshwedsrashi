@@ -5,7 +5,7 @@ export const couple = {
     parents:
     {
       mother: "Usha Shrivastava",
-      father: "Krishna Kanhiya Sharan"
+      father: "Krishna Kanhaiya Sharan Shrivastava"
     },
     portraitAlt: "Adesh in an ivory embroidered sherwani",
     story: [
