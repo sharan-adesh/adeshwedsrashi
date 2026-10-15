@@ -15,6 +15,7 @@ export function CoupleCarousel() {
     duration: 35,
   });
   const [selected, setSelected] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const onSelect = useCallback(() => {
     if (carousel) setSelected(carousel.selectedScrollSnap());
   }, [carousel]);
@@ -31,6 +32,7 @@ export function CoupleCarousel() {
   useEffect(() => {
     if (
       !carousel ||
+      isHovered ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     )
       return;
@@ -40,7 +42,7 @@ export function CoupleCarousel() {
     }, autoplayDelay);
 
     return () => window.clearInterval(timer);
-  }, [carousel]);
+  }, [carousel, isHovered]);
 
   const scroll = (direction: "previous" | "next") => {
     const instant = window.matchMedia(
@@ -72,7 +74,12 @@ export function CoupleCarousel() {
           Two different worlds, one perfectly imperfect love story.
         </p> */}
       </div>
-      <div className="couple-viewport" ref={viewportRef}>
+      <div
+        className="couple-viewport"
+        ref={viewportRef}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div className="couple-track">
           {photos.map((photo, index) => (
             <div

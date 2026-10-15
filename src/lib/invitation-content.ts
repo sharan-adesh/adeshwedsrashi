@@ -51,12 +51,12 @@ export const celebrationEvents = [
 
 export const coupleStoryPhotos = [
   {
-    src: couplePhoto1,
+    src: couplePhoto2,
     caption: "A little destiny",
     alt: "Couple smiling together in a palace courtyard",
   },
   {
-    src: couplePhoto2,
+    src: couplePhoto1,
     caption: "Closer, always",
     alt: "Couple sharing a quiet moment beside a carved palace window",
   },
