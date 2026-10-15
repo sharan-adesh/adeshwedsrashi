@@ -4,13 +4,15 @@ import {
   city,
   coupleInitials,
   celebrationDateRange,
+  coupleHashtag
 } from "../../lib/wedding";
 
 export function WeddingFooter() {
   return (
     <footer>
       <a href="#home" className="footer-monogram">
-        {coupleInitials.join(" & ")}
+        {/* {coupleInitials.join(" & ")} */}
+        {coupleHashtag}
       </a>
       <p>{footerContent.message}</p>
       <div className="footer-contact">

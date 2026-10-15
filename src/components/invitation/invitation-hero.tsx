@@ -115,6 +115,7 @@ export function InvitationHero({ active }: InvitationHeroProps) {
           <ChevronDown size={18} />
         </a>
       </div>
+      <div className="hero-top" />
       <div className="hero-bottom" />
     </section>
   );

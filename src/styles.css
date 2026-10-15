@@ -149,7 +149,7 @@
   --foreground: oklch(0.32 0.04 25);
   --primary: oklch(0.371 0.139 20);
   --primary-foreground: oklch(0.988 0.006 85);
-  --cover-rose: #C89D67;
+ --cover-rose: #C89D67;
   --cover-rose-shadow: #C89D5E;
   --cover-rose-highlight: #E0BC7A;
   --petal-rose: oklch(0.78 0.078 10);
@@ -204,7 +204,7 @@ button {
   background: var(--background);
   position: relative;
   z-index: 10;
-  border-bottom: 1px solid var(--border);
+  /* border-bottom: 1px solid var(--border); */
 }
 .monogram {
   font-family: var(--font-display);
@@ -417,15 +417,22 @@ h1 span {
 .scroll-indicator svg {
   animation: float 3s ease-in-out infinite;
 }
+.hero-top,
 .hero-bottom {
   position: absolute;
-  bottom: 0;
-  height: 35px;
+  height: 200px;
   inset-inline: 0;
+}
+.hero-top {
+  top: 0;
+  background: linear-gradient(var(--background), transparent);
+}
+.hero-bottom {
+  bottom: 0;
   background: linear-gradient(transparent, var(--background));
 }
 .section {
-  padding: 83px 24px;
+  padding: 64px 24px;
   text-align: center;
   scroll-margin-top: 15px;
 }
@@ -1070,19 +1077,16 @@ h2 {
 }
 footer {
   background: var(--primary);
-  color: var(--primary-foreground);
+  color: var(--gold);
   padding: 38px 20px 30px;
   text-align: center;
 }
 .footer-monogram {
   font-family: var(--font-display);
-  color: var(--primary-foreground);
   font-size: 32px;
 }
 footer > p:not(.footer-blessing) {
   font-size: 9px;
-  color: var(--primary-foreground);
-  opacity: 0.8;
   margin-top: 10px;
 }
 .footer-contact {
@@ -1091,8 +1095,6 @@ footer > p:not(.footer-blessing) {
   justify-content: center;
   gap: 8px;
   font-size: 9px;
-  color: var(--primary-foreground);
-  opacity: 0.8;
   margin: 20px auto;
   max-width: 550px;
 }
@@ -1110,7 +1112,6 @@ footer > p:not(.footer-blessing) {
   letter-spacing: 1.5px;
   margin-top: 14px;
   color: var(--gold);
-  opacity: 0.85;
 }
 
 .invitation-cover {

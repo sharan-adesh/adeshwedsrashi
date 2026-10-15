@@ -34,7 +34,7 @@ export const coupleInitials = [
   couple.groom.firstName[0],
   couple.bride.firstName[0],
 ] as const;
-export const coupleHashtag = `#${couple.groom.firstName}Ki${couple.bride.firstName}`;
+export const coupleHashtag = `#${couple.groom.firstName}Ki${couple.bride.firstName}`.toLowerCase();
 
 export const weddingDate = new Date("2026-12-11T17:00:00+05:30");
 const dateOptions = { timeZone: "Asia/Kolkata" } as const;
