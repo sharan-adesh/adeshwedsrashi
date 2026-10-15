@@ -1,0 +1,60 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+body {
+  font-family: var(--font-sans);
+  font-size: var(--type-size-body);
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+button:hover {
+  box-shadow: var(--invitation-shadow);
+}
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-muted);
+  gap: 14px;
+  margin: 22px auto;
+}
+.ornament span {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+.eyebrow {
+  font-size: var(--type-size-label);
+  font-weight: var(--type-weight-semibold);
+  letter-spacing: 2px;
+  color: var(--gold-muted);
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: var(--type-weight-medium);
+  letter-spacing: 0;
+}
+.sanskrit {
+  font-size: var(--type-size-heading-small);
+  color: var(--primary);
+}
+@media (max-width: 767px) {
+  .eyebrow {
+    font-size: var(--type-size-small);
+    letter-spacing: 1.5px;
+  }
+}

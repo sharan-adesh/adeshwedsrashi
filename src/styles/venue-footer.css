@@ -116,3 +116,20 @@ footer > p:not(.footer-blessing) {
   margin-top: 14px;
   color: var(--gold);
 }
+@media (max-width: 767px) {
+  .venue-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .venue-photo img {
+    height: 280px;
+  }
+  .venue-details h3 {
+    font-size: var(--type-size-heading-large);
+  }
+  .footer-contact {
+    font-size: var(--type-size-small);
+    line-height: 1.8;
+    text-align: left;
+  }
+}

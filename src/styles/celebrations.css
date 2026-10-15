@@ -6,7 +6,7 @@
 }
 .day-tabs button {
   font-size: var(--type-size-body);
-  font-weight: var(--type-weight-semibold);
+  font-weight: var(--type-weight-medium);
   border-radius: 2px;
   height: 42px;
   padding: 0 25px;
@@ -62,7 +62,7 @@
   font-family: var(--font-sans);
   color: var(--muted-foreground);
   font-size: var(--type-size-body);
-  font-weight: var(--type-weight-semibold);
+  font-weight: var(--type-weight-medium);
 }
 .event-name {
   display: block;
@@ -73,8 +73,8 @@
 }
 .event-details {
   padding: 7px 5px;
-  font-size: var(--type-size-body-large);
-  font-weight: var(--type-weight-medium);
+  font-size: var(--type-size-body-small);
+  font-weight: var(--type-weight-regular);
   line-height: 1.9;
   color: var(--muted-foreground);
   animation: reveal 0.3s ease-out;
@@ -94,4 +94,57 @@
   color: var(--gold-muted);
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+.section-actions {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  margin-top: 29px;
+}
+.section-actions button,
+.section-actions a {
+  font-size: var(--type-size-body);
+  border-radius: 2px;
+}
+@media (max-width: 767px) {
+  .day-tabs {
+    gap: 4px;
+  }
+  .day-tabs button {
+    font-size: var(--type-size-body);
+    padding: 0 12px;
+  }
+  .events {
+    padding-left: 47px;
+  }
+  .event-icon {
+    width: 34px;
+    height: 34px;
+    left: -46px;
+    top: 18px;
+  }
+  .event-icon svg {
+    width: 20px;
+  }
+  .event:before {
+    left: -29px;
+  }
+  .event-name {
+    font-size: var(--type-size-heading);
+  }
+  .event-time {
+    font-size: var(--type-size-label);
+    line-height: 1.7;
+  }
+  .event-details {
+    font-size: var(--type-size-body);
+  }
+  .section-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  .section-actions > * {
+    width: 100%;
+    max-width: 300px;
+  }
 }

@@ -12,8 +12,6 @@ export function FamilyInvitation() {
         With hearts full of joy, we invite you to be a part of ours.
       </p>
       <div className="blessing-frame">
-        {/* <p className="sanskrit">अतिथि देवो भवः</p>
-        <p className="hospitality">Our guests are our greatest blessing.</p> */}
         <div className="family-grid">
           <div>
             <p className="eyebrow">THE GROOM’S FAMILY</p>
