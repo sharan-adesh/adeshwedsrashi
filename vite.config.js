@@ -6,7 +6,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: env.NETLIFY ? '/' : '/adeshwedsrashi/',
+  base: env.NETLIFY || env.VERCEL ? '/' : '/adeshwedsrashi/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: [{
