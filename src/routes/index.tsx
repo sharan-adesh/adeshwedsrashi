@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { Pause, Play , AudioLines} from "lucide-react";
 import { Celebrations } from "@/components/invitation/celebrations";
 import { CoupleCarousel } from "@/components/couple-carousel";
 import { InvitationEnvelope } from "@/components/invitation/invitation-envelope";
@@ -48,13 +49,57 @@ function Invitation() {
   const [rsvpOpen, setRsvpOpen] = useState(false);
   const [opened, setOpened] = useState(false);
   const [coverVisible, setCoverVisible] = useState(true);
+  const [audioPlaying, setAudioPlaying] = useState(false);
+  const [audioError, setAudioError] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const pageRef = useRef<HTMLElement>(null);
   useScrollReveal();
 
+  const playAudio = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    setAudioError(null);
+    void audio.play().catch((error: unknown) => {
+      console.error("Unable to play the invitation music.", error);
+      setAudioError("Music could not be played. Please try again.");
+    });
+  };
+
+  const toggleAudio = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.paused) playAudio();
+    else audio.pause();
+  };
+
   const openInvitation = () => {
     setOpened(true);
+    playAudio();
     window.requestAnimationFrame(() => pageRef.current?.focus());
   };
+
+  useEffect(() => {
+    const stopAudio = () => {
+      const audio = audioRef.current;
+      if (!audio) return;
+      audio.pause();
+      audio.currentTime = 0;
+      setAudioError(null);
+    };
+
+    const stopAudioWhenHidden = () => {
+      if (document.visibilityState === "hidden") stopAudio();
+    };
+
+    document.addEventListener("visibilitychange", stopAudioWhenHidden);
+    window.addEventListener("blur", stopAudio);
+    return () => {
+      document.removeEventListener("visibilitychange", stopAudioWhenHidden);
+      window.removeEventListener("blur", stopAudio);
+    };
+  }, []);
 
   useEffect(() => {
     let scrollTimeout = 0;
@@ -122,6 +167,38 @@ function Invitation() {
         <WeddingFooter />
         <WeddingRSVP open={rsvpOpen} onOpenChange={setRsvpOpen} />
       </main>
+      <audio
+        ref={audioRef}
+        src={`${import.meta.env.BASE_URL}krishna-flute.mp3`}
+        loop
+        preload="auto"
+        onPlay={() => setAudioPlaying(true)}
+        onPause={() => setAudioPlaying(false)}
+      />
+      {opened && (
+        <div className="music-player">
+          <button
+            type="button"
+            className="music-player__toggle"
+            aria-label={audioPlaying ? "Pause music" : "Play music"}
+            aria-pressed={audioPlaying}
+            onClick={toggleAudio}
+          >
+            {audioPlaying ? <Pause size={16} /> : <Play size={16} />}
+            <AudioLines
+              className={`music-player__audio-lines${audioPlaying ? " music-player__audio-lines--playing" : ""}`}
+              size={16}
+              aria-hidden="true"
+            />
+            {/* <span>{audioPlaying ? "Pause music" : "Play music"}</span> */}
+          </button>
+          {audioError && (
+            <span className="music-player__error" role="alert">
+              {audioError}
+            </span>
+          )}
+        </div>
+      )}
     </>
   );
 }
