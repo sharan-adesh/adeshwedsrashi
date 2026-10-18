@@ -1,9 +1,9 @@
 import { Blend, Music2, Flower2, Flame } from "lucide-react";
-import couplePhoto1 from "../assets/couple-1.jpeg";
-import couplePhoto2 from "../assets/couple-2.jpeg";
-import couplePhoto3 from "../assets/couple-3.jpeg";
-import couplePhoto4 from "../assets/couple-4.jpeg";
-import couplePhoto5 from "../assets/couple-5.jpeg";
+import couplePhoto1 from "../assets/couple-1.webp";
+import couplePhoto2 from "../assets/couple-2.webp";
+import couplePhoto3 from "../assets/couple-3.webp";
+import couplePhoto4 from "../assets/couple-4.webp";
+import couplePhoto5 from "../assets/couple-5.webp";
 
 export const navigationItems = [
   ["The Invitation", "invitation"],

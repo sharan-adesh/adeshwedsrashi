@@ -1,6 +1,6 @@
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { Button } from "../ui/button";
-import arch from "../../assets/venue-city.jpg";
+import arch from "../../assets/venue-city.webp";
 import {
   city,
   directionsUrl,
